@@ -3,7 +3,6 @@ worker_processes  1;
 
 error_log /dev/stdout info;
 
-
 events {
     worker_connections  1024;
 }
@@ -19,12 +18,8 @@ http {
         auth_basic "Authentication Required";
         auth_basic_user_file /etc/nginx/.htpasswd;
 
-        proxy_set_header Host $host;
-        proxy_set_header Referer "";
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Real-IP $remote_addr;
-
         proxy_pass http://${BACKEND_ADDRESS}:${BACKEND_PORT};
+        proxy_read_timeout 90;
     }
   }
 }
