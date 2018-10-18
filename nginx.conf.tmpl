@@ -15,7 +15,7 @@ http {
     server_name  _;
 
     location / {
-        proxy_pass http://${BACKEND_ADDRESS}:${BACKEND_PORT}$args;
+        proxy_pass http://${BACKEND_ADDRESS}:${BACKEND_PORT};
 
         proxy_http_version 1.1;
         proxy_set_header Host $host;
